@@ -1,0 +1,25 @@
+<label>Все Курсы</label>
+<div class="courses">
+  <table class="table">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Называние</th>
+      <th scope="col">Описание</th>
+      <th scope="col">Сode</th>
+      <th scope="col">Дата добавления</th>
+      <th scope="col">Редактировать</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let course of courses;">
+      <th scope="row">{{course.id}}</th>
+      <td>{{course.name}}</td>
+      <td>{{course.description}}</td>
+      <td>{{course.code}}</td>
+      <td>{{course.addedDate | date}}</td>
+      <td><a class="btn btn-dark" [routerLink]="['/admin','course', course.id]">Редактировать</a></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

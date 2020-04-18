@@ -1,0 +1,65 @@
+<h6>Профиль</h6>
+<div class="profile">
+  <label style="padding: 10px;">Редактировать профиль</label>
+  <button style="float: right" (click)="logout($event)" type="submit" class="btn btn-info bd">Выход</button>
+  <hr>
+  <div class="alert alert-{{errorColor}}" *ngIf="isTrue">
+    {{errorText}}
+  </div>
+  <div class="row">
+    <div class="col-lg-2">
+
+    </div>
+    <div class="col-lg-8">
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <strong>Логин : </strong>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <label>{{user.username}}</label>
+        </div>
+
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <strong>ФИО : </strong>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <label>{{user.fullName}}</label>
+        </div>
+
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <strong>Номер телефона : </strong>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6">
+          <label>{{user.phone}}</label>
+        </div>
+
+      </div>
+      <form [formGroup]="form">
+        <div class="form-group">
+          <label for="password">Пароль</label>
+          <input type="password" class="form-control" id="password" formControlName="password">
+        </div>
+        <div class="form-group">
+          <label for="new_password">Новый пароль</label>
+          <input type="password" class="form-control" id="new_password" formControlName="new_password">
+        </div>
+        <div class="form-group">
+          <label for="confirm_new_password">Подтвердить новый пароль</label>
+          <input type="password" class="form-control" id="confirm_new_password" formControlName="confirm_new_password">
+        </div>
+        <button [disabled]="form.invalid" (click)="updatePassword()" type="submit" class="btn btn-info bd">Сохранить</button>
+      </form>
+
+    </div>
+    <div class="col-lg-2">
+
+    </div>
+  </div>
+  <hr>
+</div>
