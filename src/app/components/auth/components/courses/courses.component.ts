@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../../../services/auth.service';
+import {Course} from '../../../../models/course';
+import {StudentCourseService} from '../../../../services/studentCourse.service';
 
 @Component({
   selector: 'app-courses',
@@ -7,12 +9,19 @@ import {AuthService} from '../../../../services/auth.service';
   styleUrls: ['./courses.component.scss']
 })
 export class CoursesComponent implements OnInit {
-  constructor(private auth: AuthService) { }
-
-  ngOnInit() {
+  courses: Course [];
+  constructor(private auth: AuthService,
+              private studentCourseService: StudentCourseService) {
   }
 
-  jwt() {
-    this.auth.getRole();
+  ngOnInit() {
+    this.getCourses();
+  }
+  getCourses() {
+    this.studentCourseService.findAllById().subscribe(perf => {
+      this.courses = perf;
+    }, error => {
+      console.log(error);
+    });
   }
 }

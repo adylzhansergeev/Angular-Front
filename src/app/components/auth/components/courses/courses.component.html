@@ -1,2 +1,19 @@
-<p>courses works!</p>
-<input type="submit" value="ok" (click)="jwt()">
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8">
+      <div class="courses" *ngIf="courses">
+        <label>Мой курсы</label>
+        <ul class="list-group">
+          <li class="list-group-item d-flex justify-content-between align-items-center" *ngFor="let course of courses; let i = index">
+            {{i+1}}) {{course.name}}
+            <a  [routerLink]="['/auth', 'course', course.id]" class="btn btn-dark" style="color: white">Открыт курс</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-lg-4">
+
+    </div>
+
+  </div>
+</div>

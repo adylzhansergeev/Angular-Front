@@ -1,25 +1,51 @@
-<label>Все Курсы</label>
 <div class="courses">
-  <table class="table">
-    <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Называние</th>
-      <th scope="col">Описание</th>
-      <th scope="col">Сode</th>
-      <th scope="col">Дата добавления</th>
-      <th scope="col">Редактировать</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let course of courses;">
-      <th scope="row">{{course.id}}</th>
-      <td>{{course.name}}</td>
-      <td>{{course.description}}</td>
-      <td>{{course.code}}</td>
-      <td>{{course.addedDate | date}}</td>
-      <td><a class="btn btn-dark" [routerLink]="['/admin','course', course.id]">Редактировать</a></td>
-    </tr>
-    </tbody>
-  </table>
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="form-addCourse">
+        <label>Добавить курс</label>
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <div class="form-group">
+            <label for="name">Называние курса</label>
+            <input type="text" class="form-control" id="name" aria-describedby="emailHelp" formControlName="name">
+          </div>
+          <div class="form-group">
+            <label for="description">Описание курса</label>
+            <input type="text" class="form-control" id="description" formControlName="description">
+          </div>
+          <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Тип курса</label>
+          <select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
+            <option value="1">Сайты</option>
+            <option value="2">Дизайн</option>
+            <option value="3">Языки</option>
+          </select>
+          <br><br>
+          <button style="float: right" type="submit" class="btn btn-outline-dark">Сохранить</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-lg-8">
+      <label>Все Курсы</label>
+      <table class="table">
+        <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Называние</th>
+          <th scope="col">Описание</th>
+          <th scope="col">Дата добавления</th>
+          <th scope="col">Редактировать</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let course of courses;">
+          <th scope="row">{{course.id}}</th>
+          <td>{{course.name}}</td>
+          <td>{{course.description}}</td>
+          <td>{{course.addedDate | date}}</td>
+          <td><a class="btn btn-dark" [routerLink]="['/admin','course', course.id]">Редактировать</a></td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
 </div>

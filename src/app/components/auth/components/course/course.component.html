@@ -1,0 +1,35 @@
+<div class="margin">
+
+</div>
+<div class="card text-center" *ngIf="course">
+  <div class="card-header">
+    Курс
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{course.description}}</h5>
+    <p class="card-text">{{course.name}}</p>
+    ({{chapters.length}} уроков)
+  </div>
+</div>
+<h6 class="chap">Навигация по курсу</h6>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="card" style="margin-bottom: 10px" *ngFor="let chapter of chapters">
+      <div class="card-header">
+        Глава {{chapter.orderValue}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{chapter.name}}</h5>
+        <p class="card-text">{{chapter.description}}</p>
+        <label>Тип урока: </label>
+        <br>
+        <ul>
+          <li><a [routerLink]="['/auth', 'chapter','lec', chapter.id]" class="btn btn-outline-dark">Лекция</a></li>
+          <li><a [routerLink]="['/auth', 'chapter','lab', chapter.id]" class="btn btn-outline-dark">Практика</a></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+

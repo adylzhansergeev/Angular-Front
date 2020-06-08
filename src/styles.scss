@@ -1,0 +1,18 @@
+@import "~quill/dist/quill.core.css";
+@import "~quill/dist/quill.snow.css";
+html , body {
+  height: 100%;
+}
+iframe {
+  margin-left: 150px;
+  margin-right: 150px;
+  margin-right: auto;
+  width: 800px;
+  height: 500px;
+}
+img {
+  width: 100%;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

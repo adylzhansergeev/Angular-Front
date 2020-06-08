@@ -1,7 +1,7 @@
 <div class="margin">
 
 </div>
-<div class="card text-center">
+<div class="card text-center" *ngIf="course">
   <div class="card-header">
     Курс
   </div>
@@ -14,9 +14,10 @@
 <h6 class="chap">Навигация по курсу</h6>
 <div class="row">
   <div class="col-lg-8">
-    <div class="card" *ngFor="let chapter of chapters">
+    <div class="card" style="margin-bottom: 10px" *ngFor="let chapter of chapters">
       <div class="card-header">
         Глава {{chapter.orderValue}}
+        <a [routerLink]="['/admin', 'editChapter', chapter.id]" style="float: right" class="btn btn-outline-dark">Редактировать</a>
       </div>
       <div class="card-body">
         <h5 class="card-title">{{chapter.name}}</h5>
@@ -35,7 +36,7 @@
     <div class="form-chapter">
       Создать Глава
       <hr>
-      <form [formGroup]="form" (ngSubmit)="submit()">
+      <form [formGroup]="form" (ngSubmit)="Onsubmit()">
         <div class="form-group">
           <label for="name">Называния</label>
           <input type="text" class="form-control chapter" id="name" formControlName="name">

@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   tokenPrefix: 'Bearer ',
   apiUrl: 'http://localhost:8005',
   tokenKey: 'token'

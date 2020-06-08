@@ -7,7 +7,7 @@ import {AuthService} from '../../services/auth.service';
   styleUrls: ['./admin.component.scss']
 })
 export class AdminComponent implements OnInit {
-  constructor(private auth: AuthService) { }
+  constructor(public auth: AuthService) { }
   ngOnInit() {
   }
 

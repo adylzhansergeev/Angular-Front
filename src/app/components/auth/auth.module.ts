@@ -10,21 +10,35 @@ import { ScheduleComponent } from './components/schedule/schedule.component';
 import {UserService} from '../../services/user.service';
 import {TokenInterceptor} from '../../interceptors/token';
 import {AuthComponent} from './auth.component';
-
+import { CourseComponent } from './components/course/course.component';
+import { AccessDenidedComponent } from './components/access-denided/access-denided.component';
+import { ChapterLecComponent } from './components/chapter-lec/chapter-lec.component';
+import { ChapterLabComponent } from './components/chapter-lab/chapter-lab.component';
+import { LessonComponent } from './components/lesson/lesson.component';
+import {AppModule} from '../../app.module';
+import {SafeHtmlPipePipe} from '../../pipes/safe-html-pipe.pipe';
+import {SafeUrlPipePipe} from '../../pipes/safe-url-pipe.pipe';
 
 @NgModule({
   declarations: [
     AuthComponent,
     AboutComponent,
     CoursesComponent,
-    ScheduleComponent
+    ScheduleComponent,
+    CourseComponent,
+    AccessDenidedComponent,
+    ChapterLecComponent,
+    ChapterLabComponent,
+    LessonComponent,
+    SafeHtmlPipePipe,
+    SafeUrlPipePipe
   ],
   imports: [
     AuthRoutingModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
   ],
   providers: [
     UserService,

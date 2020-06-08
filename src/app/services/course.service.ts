@@ -16,4 +16,10 @@ export class CourseService {
   public findOne(id: number): Observable<Course> {
     return this.http.get<Course>(this.apiUrl + '/' + id);
   }
+  public add(course: Course): Observable<Course> {
+    return this.http.post<Course>(this.apiUrl + '/add' , course);
+  }
+  public getMyCourse(id: number): Observable<Course> {
+    return this.http.get<Course>(this.apiUrl + '/getCourse/' + id);
+  }
 }

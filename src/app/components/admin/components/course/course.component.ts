@@ -5,16 +5,16 @@ import {Course} from '../../../../models/course';
 import {CourseService} from '../../../../services/course.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {ChapterService} from '../../../../services/chapter.service';
-import {Chapters} from '../../../../models/chapters';
+import {Chapter} from '../../../../models/chapter';
 
 @Component({
-  selector: 'app-edit-course',
-  templateUrl: './edit-course.component.html',
-  styleUrls: ['./edit-course.component.css']
+  selector: 'app-course',
+  templateUrl: './course.component.html',
+  styleUrls: ['./course.component.scss']
 })
-export class EditCourseComponent implements OnInit {
-  course: Course = new Course();
-  chapters: Chapters[] = [];
+export class CourseComponent implements OnInit {
+  course: Course;
+  chapters: Chapter[] = [];
   form: FormGroup;
   constructor(
     private route: ActivatedRoute,
@@ -24,27 +24,19 @@ export class EditCourseComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-     this.route.params.subscribe(value => {
-       this.courseService.findOne(value.id).subscribe(perf => {
-         this.course = perf;
-         // tslint:disable-next-line:no-shadowed-variable
-         this.chapterService.getChaptersByCourseId(this.course.id).subscribe( perf => {
-             this.chapters = perf;
-           }
-         );
-       });
-     });
      this.form = new FormGroup({
        name: new FormControl(null, Validators.required),
        description: new FormControl(null, Validators.required),
        orderValue: new FormControl(null, Validators.required)
      });
+     this.refresh();
   }
-  submit() {
+  Onsubmit() {
     if (this.form.invalid) {
       return;
     }
-    const chapter: Chapters = {
+    const chapter: Chapter = {
+      id: null,
       name: this.form.value.name,
       description: this.form.value.description,
       orderValue: this.form.value.orderValue,
@@ -54,7 +46,23 @@ export class EditCourseComponent implements OnInit {
     };
     this.chapterService.addChapter(chapter).subscribe(perf => {
       console.log(perf);
+      this.refresh();
     });
+  }
+  refresh() {
+    this.route.params.subscribe(value => {
+      this.courseService.findOne(value.id).subscribe(perf => {
+        this.course = perf;
+        // tslint:disable-next-line:no-shadowed-variable
+        this.chapterService.getChaptersByCourseId(this.course.id).subscribe( perf => {
+            this.chapters = perf;
+          }
+        );
+      });
+    });
+  }
+  deleteChapter(id: number) {
+    console.log(id);
   }
 
 }

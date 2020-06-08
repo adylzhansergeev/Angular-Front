@@ -1,0 +1,46 @@
+<div class="card text-center" *ngIf="chapter">
+  <div class="card-header">
+    Глава {{chapter.orderValue}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{chapter.name}}</h5>
+    <p class="card-text">{{chapter.description}}</p>
+  </div>
+</div>
+<h6 class="chap">Навигация по уроку</h6>
+<div class="row">
+  <div class="col-lg-8">
+    <div class="card" *ngFor="let lesson of lessons">
+        <div class="card-header" *ngIf="lesson.lessonType.id === 1">
+          Урок {{lesson.orderValue}} <a [routerLink]="['/admin', 'editLesson', lesson.id]" style="float: right" class="btn btn-outline-dark">Редактировать</a>
+        </div>
+        <div class="card-body" *ngIf="lesson.lessonType.id === 1">
+          <h5 class="card-title">{{lesson.title}}</h5>
+          <p class="card-text">Тип урока: Лекция</p>
+          <p>Дата добавление: {{lesson.addedDate | date}}</p>
+        </div>
+    </div>
+
+  </div>
+  <div class="col-lg-4">
+    <div class="form-chapter">
+      Создать Глава
+      <hr>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="form-group">
+          <label for="title">Title: </label>
+          <input type="text" class="form-control" id="title" formControlName="title">
+        </div>
+        <div class="form-group">
+          <label for="content">Content: </label>
+          <input type="text" class="form-control" id="content" formControlName="content">
+        </div>
+        <div class="form-group">
+          <label for="orderValue">OrderValue</label>
+          <input type="number" class="form-control" id="orderValue" formControlName="orderValue">
+        </div>
+        <button [disabled]="form.invalid" style="float: right" class="btn btn-dark">Добавить</button>
+      </form>
+    </div>
+  </div>
+</div>

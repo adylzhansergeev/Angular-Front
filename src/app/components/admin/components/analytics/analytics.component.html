@@ -1,0 +1,73 @@
+<div class="container">
+  <div class="analytics">
+    <span style="font-size: 2rem;">
+      <span style="color: #484848">
+      <i class="fas fa-chart-pie"> Аналитика </i>
+      </span>
+    </span>
+  </div>
+  <div class="row cards">
+    <div class="col-lg-4 col-md-4">
+      <div class="card" style="width: 18rem;">
+        <div class="card-body" style="background-color: #535e67">
+          <span style="font-size: 4rem;">
+            <span style="color: #484848">
+            <i class="fas fa-users" style="color: white"></i>
+            </span>
+          </span>
+          <br>
+          <div class="num" *ngIf="users">
+            {{users.length}}
+          </div>
+          <p class="p">
+            пользователи
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+      <div class="card" style="width: 18rem; background-color: darkgoldenrod">
+        <div class="card-body">
+          <span style="font-size: 4rem;">
+            <span style="color: #484848">
+            <i class="far fa-calendar-minus" style="color: white"></i>
+            </span>
+          </span>
+          <div class="num">
+            <ngx-counter [countValue]=1 [limit] =lengthData font="cursive" theme="green"></ngx-counter>
+          </div>
+          <p class="p">
+            продукты
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-4 col-md-4">
+      <div class="card" style="width: 18rem; background-color: cadetblue">
+        <div class="card-body">
+          <span style="font-size: 4rem;">
+            <span style="color: #484848">
+            <i class="fas fa-chart-pie" style="color: white"></i>
+            </span>
+          </span>
+          <br>
+          <div class="num">
+            120
+          </div>
+          <p class="p">
+            пользователи
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row table">
+    <div class="col-lg-6">
+      <app-table></app-table>
+    </div>
+    <div class="col-lg-6">
+      <app-pie (onAdd)="getLengthData($event)"></app-pie>
+    </div>
+
+  </div>
+</div>

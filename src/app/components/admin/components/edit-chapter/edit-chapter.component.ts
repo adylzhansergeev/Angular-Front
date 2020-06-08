@@ -1,12 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Chapters} from '../../../../models/chapters';
-import {Lessons} from '../../../../models/lessons';
-import {ActivatedRoute} from '@angular/router';
+import {Chapter} from '../../../../models/chapter';
+import {ActivatedRoute, Params} from '@angular/router';
 import {ChapterService} from '../../../../services/chapter.service';
-import {LessonService} from '../../../../services/lesson.service';
-import {Course} from '../../../../models/course';
-import {LessonTypes} from '../../../../models/lessonTypes';
+import {switchMap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-edit-chapter',
@@ -15,45 +12,43 @@ import {LessonTypes} from '../../../../models/lessonTypes';
 })
 export class EditChapterComponent implements OnInit {
   form: FormGroup;
-  chapter: Chapters = new Chapters();
-  lessons: Lessons[] = [];
+  chapter: Chapter;
   constructor(private route: ActivatedRoute,
-              private chapterService: ChapterService,
-              private lessonService: LessonService) { }
+              private chapterService: ChapterService) { }
 
   ngOnInit() {
-    this.route.params.subscribe( value => {
+    this.route.params.subscribe(value => {
       this.chapterService.findById(value.id).subscribe(perf => {
         this.chapter = perf;
-        this.lessonService.findByChapterId(this.chapter.id).subscribe(perf => {
-            this.lessons = perf;
-          }
-        );
-        }
-      );
-    })
-    this.form = new FormGroup({
-      title: new FormControl(null, Validators.required),
-      content: new FormControl(null, Validators.required),
-      orderValue: new FormControl(null, Validators.required)
+        this.form = new FormGroup({
+          name: new FormControl(this.chapter.name, Validators.required),
+          description: new FormControl(this.chapter.description, Validators.required),
+          orderValue: new FormControl(this.chapter.orderValue, Validators.required),
+          active: new FormControl(this.chapter.active, Validators.required),
+        });
+      }, error => {
+        console.log(error);
+      });
     });
   }
-
   submit() {
     if (this.form.invalid) {
       return;
     }
-    const lesson: Lessons = {
-    title: this.form.value.title,
-    content: this.form.value.content,
-    orderValue: this.form.value.orderValue,
-    addedDate: new Date(),
-    chapter: this.chapter,
-    active: 1
+    const chapter: Chapter = {
+      id: this.chapter.id,
+      name: this.form.value.name,
+      description: this.form.value.description,
+      orderValue: this.form.value.orderValue,
+      active: this.form.value.active,
+      course: this.chapter.course,
+      addedDate: this.chapter.addedDate
     };
-    this.lessonService.add(lesson).subscribe(perf => {
+    this.chapterService.updateChapter(chapter).subscribe(perf => {
       console.log(perf);
-      }
-    );
+    });
+  }
+  getChapter() {
   }
 }
+

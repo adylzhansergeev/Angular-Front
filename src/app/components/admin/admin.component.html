@@ -13,6 +13,9 @@
             <a class="nav-link" [routerLink]="['/admin','add']"><i class="fa fa-th-list fa-fw mr-1"></i>Добавить</a>
           </li>-->
           <li class="nav-item pl-1">
+            <a class="nav-link" [routerLink]="['/admin','analytics']" *ngIf="auth.checkAvailability()"><i class="fas fa-chart-bar mr-1"></i>Аналитка</a>
+          </li>
+          <li class="nav-item pl-1">
             <a class="nav-link" [routerLink]="['/admin','about']" *ngIf="auth.checkAvailability()"><i class="fas fa-user-circle mr-1"></i>Профиль</a>
           </li>
           <!--<li class="nav-item pl-1">

@@ -12,16 +12,15 @@ import * as bcrypt from 'bcryptjs';
 })
 export class AboutComponent implements OnInit {
   form: FormGroup;
-  user: User = new User();
+  user: User;
   errorText: string;
-  isTrue: boolean;
+  isTrue = false;
   errorColor: string;
   constructor(private auth: AuthService,
               private userService: UserService,
               private router: Router) {
   }
   ngOnInit() {
-    this.isTrue = false;
     if (this.auth.checkAvailability()) {
       this.userService.currentUser().subscribe(perf  => {
         this.user = perf;

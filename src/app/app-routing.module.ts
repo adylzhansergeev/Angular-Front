@@ -9,7 +9,6 @@ const routes: Routes = [
   {path: 'auth', loadChildren: './components/auth/auth.module#AuthModule', canActivate: [IsUserAuthGuard], data: {role: 'ROLE_USER'}},
   {path: 'admin', loadChildren: './components/admin/admin.module#AdminModule', canActivate: [IsAdminGuard], data: {role: 'ROLE_ADMIN'}}
 ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes, {preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]

@@ -1,0 +1,18 @@
+<div class="card text-center" *ngIf="lesson">
+  <div class="card-header">
+    Урок {{lesson.orderValue}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{lesson.title}}</h5>
+    Тип урока: <p class="card-text">{{lesson.lessonType.type}}</p>
+  </div>
+</div>
+<div class="content" *ngIf="lesson">
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12">
+      <div [innerHTML]="lesson.content | safeHtmlPipe">
+      </div>
+    </div>
+
+  </div>
+</div>
