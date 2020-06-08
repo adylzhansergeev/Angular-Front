@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
-import * as Highcharts from 'highcharts';
 import {AnalyticsService} from '../../../../../services/analytics.service';
 export class Data {
   name: string;

@@ -17,7 +17,12 @@
     <div class="card" style="margin-bottom: 10px" *ngFor="let chapter of chapters">
       <div class="card-header">
         Глава {{chapter.orderValue}}
-        <a [routerLink]="['/admin', 'editChapter', chapter.id]" style="float: right" class="btn btn-outline-dark">Редактировать</a>
+        <button  style="float: right" [routerLink]="['/admin','course', chapter.id]" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <button style="float: right" [routerLink]="['/admin','editChapter', chapter.id]" mat-icon-button aria-label="Example icon button with a vertical three dot icon">
+          <mat-icon>create</mat-icon>
+        </button>
       </div>
       <div class="card-body">
         <h5 class="card-title">{{chapter.name}}</h5>

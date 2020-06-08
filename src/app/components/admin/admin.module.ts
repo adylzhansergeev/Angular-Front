@@ -16,12 +16,11 @@ import { ChapterLabComponent } from './components/chapter-lab/chapter-lab.compon
 import { AnalyticsComponent } from './components/analytics/analytics.component';
 import {HighchartsChartModule} from 'highcharts-angular';
 import {CounterModule} from 'ngx-counter';
-import {MatTableModule} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { PieComponent } from './shared/widgets/pie/pie.component';
 import { TableComponent } from './shared/components/table/table.component';
-import {MatInputModule} from '@angular/material';
-
+import {MatButtonModule, MatIconModule, MatInputModule, MatTableModule} from '@angular/material';
+import {MatDividerModule} from '@angular/material/divider';
 @NgModule({
   declarations: [
     AdminComponent,
@@ -48,7 +47,10 @@ import {MatInputModule} from '@angular/material';
     CounterModule,
     MatFormFieldModule,
     MatTableModule,
-    MatInputModule
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule,
+    MatDividerModule
   ],
   exports: [QuillModule],
   providers: []

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Course} from '../../../../models/course';
 import {CourseService} from '../../../../services/course.service';
 import {Router} from '@angular/router';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {MatTableDataSource} from '@angular/material';
+
 
 @Component({
   selector: 'app-home-page',
@@ -10,27 +10,23 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent implements OnInit {
-  courses: Course[];
-  form: FormGroup;
+  displayedColumns: string[] = ['name', 'description', 'addedDate', 'update', 'delete'];
+  dataSource;
   constructor(
     private courseService: CourseService,
     private router: Router) { }
 
   ngOnInit() {
-    this.form = new FormGroup({
-      name: new FormControl(null, Validators.required),
-      description: new FormControl(null, Validators.required)
-    });
     this.refresh();
   }
   refresh() {
     this.courseService.findAll().subscribe(perf => {
-      this.courses = perf;
+      this.dataSource = new MatTableDataSource(perf);
     }, error => {
       console.log(error);
     });
   }
-  submit() {
+  /*submit() {
     if (this.form.invalid) {
       return;
     }
@@ -45,5 +41,9 @@ export class HomePageComponent implements OnInit {
       console.log(course);
       this.refresh();
     });
+  }*/
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
